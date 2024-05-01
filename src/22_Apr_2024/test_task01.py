@@ -26,9 +26,10 @@ def test_codepen_no_username_error():
     time.sleep(2)
     allure.attach(driver.get_screenshot_as_png(), name="error-screenshot", attachment_type=AttachmentType.PNG)
     username_error_msg = driver.find_element(By.XPATH, value="//input[@id='username']/following-sibling::small")
-    #//small[text()= 'Username must be at least 3 characters'] this xpath doen't work because it is dynamic,
+    #//small[text()= 'Username must be at least 3 characters'] this xpath doen't work because text is dynamic,
     #it is better to use other attributes instead of text(), whenever text is modified , testcases will fail or regression will fail
     # username_error_msg = driver.find_element(By.XPATH, username+"/following-sibling::small") # concatination doesnot work on webelement
+    print(username_error_msg.text)
     assert username_error_msg.text == "Username must be at least 3 characters"
     time.sleep(2)
     driver.quit()
