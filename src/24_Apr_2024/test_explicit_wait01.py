@@ -25,7 +25,8 @@ def test_vwologin():
         EC.text_to_be_present_in_element((By.CSS_SELECTOR, ".page-heading"), "Dashboard")
     )
 
-    heading_element = driver.find_element(By.XPATH, value="//span[@data-qa='lufexuloga']")
+    #heading_element = driver.find_element(By.XPATH, value="//span[@data-qa='lufexuloga']")
+    heading_element = driver.find_element(By.CSS_SELECTOR, value="span[data-qa='lufexuloga']")
     assert heading_element.text == "Py2xATB"
     allure.attach(driver.get_screenshot_as_png(), name="login-error-msg", attachment_type=AttachmentType.PNG)
     driver.quit()
