@@ -1,0 +1,32 @@
+import time
+import allure
+import pytest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from allure_commons.types import AttachmentType
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import (ElementNotVisibleException, ElementNotSelectableException)
+
+
+@pytest.mark.smoke
+@allure.title("Verify that Login is working in app.vwo.com website")
+@allure.description("TC#1 - Simple Login check on vwo.com Website.")
+def test_vwologin():
+    driver = webdriver.Chrome()
+    driver.get("https://app.vwo.com")
+    email_input = driver.find_element(By.CSS_SELECTOR, value="[name='username']")
+    pass_input = driver.find_element(By.CSS_SELECTOR, value='[name="password"]')
+    email_input.send_keys("admintyuu@gmail.com")
+    pass_input.send_keys("adminkkk")
+    button_submit_element = driver.find_element(By.ID, "js-login-btn")
+    button_submit_element.click()
+    # Fluent Wait ( EW)
+    ignore_list = [ElementNotSelectableException, ElementNotVisibleException]
+    WebDriverWait(driver=driver, timeout=10, poll_frequency=1, ignored_exceptions=ignore_list).until(
+        EC.visibility_of_element_located((By.ID, "js-notification-box-msg"))
+    )
+    error_msg  = driver.find_element(By.ID, value = "js-notification-box-msg")
+    assert error_msg.text == "Your email, password, IP address or location did not match"
+    allure.attach(driver.get_screenshot_as_png(), name="login-error-msg", attachment_type=AttachmentType.PNG)
+    driver.quit()
