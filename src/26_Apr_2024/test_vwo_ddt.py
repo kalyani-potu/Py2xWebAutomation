@@ -14,9 +14,9 @@ from selenium.common.exceptions import (ElementNotVisibleException, ElementNotSe
 
 def read_credentials_from_excel(file_path):
     credentials = []
-    workbook = openpyxl.load_workbook(file_path)
-    sheet = workbook.active
-    for row in sheet.iter_rows(min_row=2, values_only=True):
+    workbook = openpyxl.load_workbook(file_path)#The load_workbook() function opens file for reading
+    sheet = workbook.active#The object of the workbook.active has been created in the script to read the values of the max_row and the max_column properties.
+    for row in sheet.iter_rows(min_row=2, values_only=True): #for loop to read each row from the excel sheet
         username1, password1 = row
         credentials.append({
             "username" : username1,
@@ -28,6 +28,8 @@ def read_credentials_from_excel(file_path):
 file_path_fromos = os.getcwd() + "/py2xtestdata.xlsx"
 print(file_path_fromos)
 
+#instead of for loop to read each row from excel sheet, we use parametrize to read all data(each row)
+#Parameterizing of a test is done to run the test against multiple sets of inputs.
 @pytest.mark.parametrize("user_cred", read_credentials_from_excel(file_path_fromos))
 @allure.title("Verify the Invalid Login with the Excel Testdata.")
 @allure.description("TC#1 - 10 Invalid login verification for app.vwo.com")
