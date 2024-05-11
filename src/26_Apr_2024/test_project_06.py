@@ -38,12 +38,12 @@ def test_orange_hrm():
     WebDriverWait(driver, timeout=10, poll_frequency=1, ignored_exceptions=ignore_list).until(
         EC.visibility_of_element_located((By.XPATH, "//button[text()=' Add ']"))
     )
+# Adding User
     add_button = driver.find_element(By.XPATH, "//button[text()=' Add ']")
     add_button.click()
     WebDriverWait(driver, timeout=10, poll_frequency=1, ignored_exceptions=ignore_list).until(
         EC.visibility_of_element_located((By.XPATH, "//h6[text()='Add User']"))
     )
-#Adding User
 
     #user role dropdown
     role_select = driver.find_element(
@@ -61,7 +61,7 @@ def test_orange_hrm():
     employee_name = driver.find_element(By.XPATH, "//input[@placeholder='Type for hints...']")
     employee_name.send_keys("Ra")
     WebDriverWait(driver, timeout=10).until(
-        EC.visibility_of_element_located((By.XPATH, "//span[text()='Ravi M B']"))#//div[@class='oxd-autocomplete-option']/span[text()='dyr akhil user']
+        EC.visibility_of_element_located((By.XPATH, "//span[text()='Ravi M B']"))#//div[@class='oxd-autocomplete-option']/span[text()='Ravi M B']
     )
     #selecting the employee name
     driver.find_element(By.XPATH, "//span[text()='Ravi M B']").click()
@@ -91,6 +91,7 @@ def test_orange_hrm():
         EC.visibility_of_element_located((By.XPATH, "//h5[text()='System Users']"))
     )
 
+#search user
     search_username = driver.find_element(By.XPATH, "//div[@class='oxd-input-group oxd-input-field-bottom-space']/div[2]/input[@class = 'oxd-input oxd-input--active']")
     search_username.send_keys(username)
 
@@ -100,6 +101,7 @@ def test_orange_hrm():
     WebDriverWait(driver,timeout=5).until(
         EC.visibility_of_element_located((By.XPATH, "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']/span[@class='oxd-text oxd-text--span']"))
     )
+#asserting user
     result = driver.find_elements(By.XPATH, "//div[@class = 'oxd-table-cell oxd-padding-cell']")
     assert result[1].text == username
     assert result[2].text == "Admin"
