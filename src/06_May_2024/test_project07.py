@@ -12,7 +12,10 @@ def test_project07():
 
     submit = driver.find_element(By.XPATH, "//button[text() = 'Submit']")
     submit.click()
-    message = driver.find_element(locate_with(By.TAG_NAME, 'small').below({By.ID: 'username'})).text
+    #message = driver.find_element(locate_with(By.TAG_NAME, 'small').below({By.ID: 'username'})).text
+    username = driver.find_element(By.ID, 'username')
+    message = driver.find_element(locate_with(By.TAG_NAME, 'small').below(username)).text
+    print(message)
     assert message == "Username must be at least 3 characters"
     time.sleep(5)
     driver.quit()
