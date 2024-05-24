@@ -12,7 +12,8 @@ def test_codepen_no_username_error():
     driver = webdriver.Chrome()
     driver.get("https://cdpn.io/AbdullahSajjad/fullpage/LYGVRgK?anon=true&view=fullpage")
     time.sleep(2)
-    driver.switch_to.frame(driver.find_element(By.XPATH, "//iframe[@id='result']"))
+    driver.switch_to.frame(driver.find_element(By.XPATH, "//iframe[@id='result']")) #HTML document is in Iframe, switching the window
+    #driver.switch_to.frame("result") #we can directly give id instead of driver.findelement
     time.sleep(3)
     email = driver.find_element(By.XPATH, value="//input[@id='email']")
     email.send_keys("kalyani.p@gmail.com")
