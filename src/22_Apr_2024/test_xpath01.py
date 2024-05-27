@@ -17,6 +17,11 @@ def test_cura_login():
     #make_appointment_btn = driver.find_element(By.XPATH, value="//a[@id='btn-make-appointment']")
     make_appointment_btn = driver.find_element(By.XPATH, value="//*[@id='btn-make-appointment']")
     #This * is called wild card, it searches id = btn-make-app in all the TagNames, this will be a Slow xpath
+
+    print(make_appointment_btn) #driver.find_element() returns the object of the first webelement or webelement reference
+    #driver.find_elements() returns list of webelements
+
+
     make_appointment_btn.click()
     assert driver.current_url == "https://katalon-demo-cura.herokuapp.com/profile.php#login"
     allure.attach(driver.get_screenshot_as_png(), name = "login screenshot", attachment_type=AttachmentType.PNG)
