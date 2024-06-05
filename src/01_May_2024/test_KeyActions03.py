@@ -13,6 +13,7 @@ def test_01_actions():
     #first letter capital and rest of the letters small
     actions = ActionChains(driver)
     actions.key_down(Keys.SHIFT).send_keys_to_element(firstname, "t").key_up(Keys.SHIFT).send_keys("he testing academy").perform()
+
     #perform(): perform method performs all the actions stored inside an actions object
     #actions.send_keys("the testing academy").perform()
     time.sleep(10)
