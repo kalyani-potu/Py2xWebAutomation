@@ -8,11 +8,10 @@ def test_fileupload():
     driver = webdriver.Chrome()
     driver.get("https://awesomeqa.com/practice.html")
     driver.maximize_window()
-    upload_image = driver.find_element(By.ID, "photo")
-    #action = ActionChains(driver)
-    #action.send_keys_to_element()
-    #print(os.getcwd())
-    upload_image.send_keys(os.getcwd()+"\Image.png")
+    #upload_image = driver.find_element(By.ID, "photo")
+    upload_image = driver.find_element(By.CSS_SELECTOR, "input[type='file']")#recomended - we need to find element by giving input as file
+
+    upload_image.send_keys(r"C:\Users\Kalyani\Pictures\Screenshots\Image_1.png")#give r - raw path , otherwise it will fail
     time.sleep(3)
     download_file = driver.find_element(By.XPATH, "//a[text() = 'Click here to Download File']")
     download_file.click()

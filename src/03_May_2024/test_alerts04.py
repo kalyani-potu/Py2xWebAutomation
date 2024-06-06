@@ -10,18 +10,21 @@ def test_alerts01():
     driver.get("https://the-internet.herokuapp.com/javascript_alerts")
     alert_element = driver.find_element(By.XPATH, "//button[@onclick='jsConfirm()']")
     alert_element.click()
+    #alert_element.submit()
+    
 
     wait = WebDriverWait(driver, 10)
     wait.until(EC.alert_is_present())
     alert_popup = driver.switch_to.alert
-    #alert_popup.accept() #ok
-    alert_popup.dismiss()
+    print(alert_popup.text) #getting text from alert popup
+    alert_popup.accept() #ok
+
 
     # popups -> model or html popup, alert - this how handle
     # wait for the model to come and click on the escape button, or close button
     result = driver.find_element(By.ID, 'result')
     print(result.text)
     #assert result.text == "You clicked: Ok"
-    assert result.text == "You clicked: Cancel"
+    assert result.text == "You clicked: Ok"
     time.sleep(3)
     driver.quit()

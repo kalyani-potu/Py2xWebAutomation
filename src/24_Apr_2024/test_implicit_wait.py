@@ -12,7 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 @allure.description("TC#1 - Simple Login check on vwo.com Website.")
 def test_vwologin():
     driver = webdriver.Chrome()
-    driver.implicitly_wait(5)  # Webdriver to wait for all the elements
+    driver.implicitly_wait(5)  # Implicit wait tells the WebDriver to wait for a certain amount of time before throwing a NoSuchElementException. It is set once and applies to all elements in the WebDriver instance.
     driver.get("https://app.vwo.com")
     # e1, e2 , e3 ->
     # Tell Webdriver to wait for the 5 to Load
